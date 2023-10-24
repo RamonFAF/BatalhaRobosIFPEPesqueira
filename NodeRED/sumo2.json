@@ -1,0 +1,559 @@
+[
+    {
+        "id": "dca460f302768b32",
+        "type": "tab",
+        "label": "Sumô 02",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9e33f9dc163f31ed",
+        "type": "mqtt out",
+        "z": "dca460f302768b32",
+        "name": "frente",
+        "topic": "Mover03",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "733d64dfc71a2f78",
+        "x": 1030,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "15b538742beb58f0",
+        "type": "mqtt out",
+        "z": "dca460f302768b32",
+        "name": "reverso",
+        "topic": "Mover03",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "733d64dfc71a2f78",
+        "x": 1040,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7df07c760fa67f5f",
+        "type": "mqtt out",
+        "z": "dca460f302768b32",
+        "name": "Gira horário",
+        "topic": "Mover03",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "733d64dfc71a2f78",
+        "x": 1050,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4e3c20e95dfc4cbf",
+        "type": "mqtt out",
+        "z": "dca460f302768b32",
+        "name": "gira anti horário",
+        "topic": "Mover03",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "733d64dfc71a2f78",
+        "x": 1060,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "0e6da26b47a3acce",
+        "type": "trigger",
+        "z": "dca460f302768b32",
+        "name": "",
+        "op1": "reverso",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-50",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 750,
+        "y": 80,
+        "wires": [
+            [
+                "9e33f9dc163f31ed"
+            ]
+        ]
+    },
+    {
+        "id": "47fa738cefc133ee",
+        "type": "ui_template",
+        "z": "dca460f302768b32",
+        "group": "04cd4b5eca09689b",
+        "name": "Botão frente",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<button ng-mousedown=\"send({payload: 'down'})\" ng-mouseup=\"send({payload: 'up'})\">Frente</button>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "7a7a84190a18aac0"
+            ]
+        ]
+    },
+    {
+        "id": "7a7a84190a18aac0",
+        "type": "switch",
+        "z": "dca460f302768b32",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "down",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "up",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "0e6da26b47a3acce"
+            ],
+            [
+                "de2b04cc23630fa7"
+            ]
+        ]
+    },
+    {
+        "id": "de2b04cc23630fa7",
+        "type": "change",
+        "z": "dca460f302768b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "0e6da26b47a3acce"
+            ]
+        ]
+    },
+    {
+        "id": "4406a2051480d398",
+        "type": "trigger",
+        "z": "dca460f302768b32",
+        "name": "",
+        "op1": "frente",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-50",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "15b538742beb58f0"
+            ]
+        ]
+    },
+    {
+        "id": "6cbd692a9ad7dc30",
+        "type": "switch",
+        "z": "dca460f302768b32",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "down",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "up",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "4406a2051480d398"
+            ],
+            [
+                "f3cc97a66510f824"
+            ]
+        ]
+    },
+    {
+        "id": "f3cc97a66510f824",
+        "type": "change",
+        "z": "dca460f302768b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "4406a2051480d398"
+            ]
+        ]
+    },
+    {
+        "id": "c53f67da3c4c5005",
+        "type": "trigger",
+        "z": "dca460f302768b32",
+        "name": "",
+        "op1": "gira_horario",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-50",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "7df07c760fa67f5f"
+            ]
+        ]
+    },
+    {
+        "id": "4f1caec01a6573a7",
+        "type": "switch",
+        "z": "dca460f302768b32",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "down",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "up",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 320,
+        "wires": [
+            [
+                "c53f67da3c4c5005"
+            ],
+            [
+                "1d73112c5da87bd9"
+            ]
+        ]
+    },
+    {
+        "id": "1d73112c5da87bd9",
+        "type": "change",
+        "z": "dca460f302768b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "c53f67da3c4c5005"
+            ]
+        ]
+    },
+    {
+        "id": "1c04d7fbac8ebe96",
+        "type": "trigger",
+        "z": "dca460f302768b32",
+        "name": "",
+        "op1": "gira_antihorario",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-50",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 750,
+        "y": 440,
+        "wires": [
+            [
+                "4e3c20e95dfc4cbf"
+            ]
+        ]
+    },
+    {
+        "id": "1195c1b85a1cd631",
+        "type": "switch",
+        "z": "dca460f302768b32",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "down",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "up",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 440,
+        "wires": [
+            [
+                "1c04d7fbac8ebe96"
+            ],
+            [
+                "bb798be323cbc528"
+            ]
+        ]
+    },
+    {
+        "id": "bb798be323cbc528",
+        "type": "change",
+        "z": "dca460f302768b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "1c04d7fbac8ebe96"
+            ]
+        ]
+    },
+    {
+        "id": "f1e6784e1a562966",
+        "type": "ui_template",
+        "z": "dca460f302768b32",
+        "group": "04cd4b5eca09689b",
+        "name": "Botão Reverso",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<button ng-mousedown=\"send({payload: 'down'})\" ng-mouseup=\"send({payload: 'up'})\">Reverso</button>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "6cbd692a9ad7dc30"
+            ]
+        ]
+    },
+    {
+        "id": "c1b4e52e283b9294",
+        "type": "ui_template",
+        "z": "dca460f302768b32",
+        "group": "04cd4b5eca09689b",
+        "name": "Botão Gira Horário",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<button ng-mousedown=\"send({payload: 'down'})\" ng-mouseup=\"send({payload: 'up'})\">Horário</button>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "4f1caec01a6573a7"
+            ]
+        ]
+    },
+    {
+        "id": "f33a74e2b27deaf1",
+        "type": "ui_template",
+        "z": "dca460f302768b32",
+        "group": "04cd4b5eca09689b",
+        "name": "Botão Gira Anti-horário",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<button ng-mousedown=\"send({payload: 'down'})\" ng-mouseup=\"send({payload: 'up'})\">Anti-Horário</button>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "1195c1b85a1cd631"
+            ]
+        ]
+    },
+    {
+        "id": "733d64dfc71a2f78",
+        "type": "mqtt-broker",
+        "name": "Aedes",
+        "broker": "192.168.11.190",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "04cd4b5eca09689b",
+        "type": "ui_group",
+        "name": "Sumô 01",
+        "tab": "dbdb16532c392bc0",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dbdb16532c392bc0",
+        "type": "ui_tab",
+        "name": "Batalha de Robôs",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
